@@ -2,7 +2,7 @@ package logger
 
 import (
 	"fmt"
-	"github.com/lmittmann/tint"
+	"github.com/phsym/console-slog"
 	"io"
 	"log/slog"
 	"os"
@@ -131,10 +131,11 @@ func prodHandler(path Path) slog.Handler {
 
 // devHandler creates a handler for development logging
 func devHandler() slog.Handler {
-	return tint.NewHandler(os.Stderr, &tint.Options{
+	return console.NewHandler(os.Stderr, &console.HandlerOptions{
 		Level:      slog.LevelDebug,
 		TimeFormat: "3:04:05PM",
 		AddSource:  true,
+		Theme:      console.NewDefaultTheme(),
 	})
 }
 
